@@ -11,7 +11,10 @@ class ServiceModel {
         let query = `select * from vgsales where "Rank"=${rank}`
         return await database.query(query)
     }
-
+    async like_name(name) {
+        let query = `select * from vgsales where "Name" like '%${name}%'`
+        return await database.query(query)
+    }
 }
 
 module.exports = ServiceModel

@@ -55,6 +55,7 @@ const RESPONSE_ACCEPT_PLAYLIST_ADD = 'ویدیو به پلی لیست اضافه
 const RESPONSE_ERROR_PLAYLIST_ADD = 'اضافه کردن ویدیو به پلی لیست با مشکل مواجه شده است'
 const RESPONSE_ACCEPT_PLAYLIST_DELETE = 'پلی لیست حذف شد'
 const RESPONSE_ERROR_PLAYLIST_DELETE = 'حذف پلی لیست با مشکل مواجه شد'
+const RESPONSE_ERROR_GET_DATA ='دریافت داده با خطا مواجه شد'
 const IDENTIFICATION_KEY = 'email'
 const USER = 'USER'
 const ADMIN = 'ADMIN'
@@ -134,5 +135,6 @@ module.exports = {
     RESPONSE_ACCEPT_PLAYLIST_ADD,
     RESPONSE_ERROR_PLAYLIST_ADD,
     RESPONSE_ACCEPT_PLAYLIST_DELETE,
-    RESPONSE_ERROR_PLAYLIST_DELETE
+    RESPONSE_ERROR_PLAYLIST_DELETE,
+    RESPONSE_ERROR_GET_DATA
 }

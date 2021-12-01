@@ -6,4 +6,11 @@ let singleSchema={
         rank: {type: 'string'},
     }
 }
-module.exports = {singleSchema}
+let like_nameSchema={
+    type: 'object',
+    additionalProperties: false,
+    properties: {
+        name: {type: 'string'},
+    }
+}
+module.exports = {singleSchema,like_nameSchema}

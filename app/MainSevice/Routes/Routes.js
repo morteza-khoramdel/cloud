@@ -17,6 +17,12 @@ module.exports =
                 function: controllerService.single_game,
                 middleware: [prepare.startPreparation, validAccess.validate]
             }
+        },
+        '/game/like_name': {
+            GET: {
+                function: controllerService.like_name,
+                middleware: [prepare.startPreparation, validAccess.validate]
+            }
         }
     }
 

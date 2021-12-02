@@ -39,4 +39,20 @@ let filter_categorySchema = {
 
     }
 }
-module.exports = {singleSchema, like_nameSchema, filter_platformSchema, filter_yearSchema, filter_categorySchema}
+let bestsellersSchema = {
+    type: 'object',
+    additionalProperties: false,
+    properties: {
+        platform: {type: 'string'},
+        year: {type: 'string'},
+
+    }
+}
+module.exports = {
+    singleSchema,
+    like_nameSchema,
+    filter_platformSchema,
+    filter_yearSchema,
+    filter_categorySchema,
+    bestsellersSchema
+}

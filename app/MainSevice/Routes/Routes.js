@@ -1,4 +1,3 @@
-
 const DataPreparation = require('../../../MiddleWares/DataPreparation/DataPreparation')
 let prepare = new DataPreparation()
 let schemas = require('../Schema/SchemaAccess')
@@ -8,7 +7,7 @@ const ServiceController = require('../Controllers/ServiceController')
 let controllerService = new ServiceController()
 const SendRequestAccessController = require('../../../MiddleWares/SendRequestAccessControl/SendRequestAccessControl')
 let sendRequestAccessControl = new SendRequestAccessController()
-const VerifyJWT  =  require('../../../MiddleWares/CheckTokens/VerifyJWT')
+const VerifyJWT = require('../../../MiddleWares/CheckTokens/VerifyJWT')
 let verifyJWT = new VerifyJWT()
 module.exports =
     {
@@ -27,20 +26,26 @@ module.exports =
 
         '/game/filter_platform': {
             GET: {
-                function: controllerService.filter_platform ,
+                function: controllerService.filter_platform,
                 middleware: [prepare.startPreparation, validAccess.validate]
             }
         },
         '/game/filter_year': {
             GET: {
-                function: controllerService.filter_year ,
+                function: controllerService.filter_year,
                 middleware: [prepare.startPreparation, validAccess.validate]
             }
         },
-        '/game/filter_category': {
+        '/game/bestsellers': {
             GET: {
-                function: controllerService.filter_category ,
+                function: controllerService.bestsellers,
                 middleware: [prepare.startPreparation, validAccess.validate]
+            }
+        },
+        '/game/sell_europe_more_than_us': {
+            GET: {
+                function: controllerService.sell_europe_more_than_us,
+                middleware: [prepare.startPreparation]
             }
         }
     }

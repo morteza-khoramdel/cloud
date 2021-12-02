@@ -23,6 +23,25 @@ module.exports =
                 function: controllerService.like_name,
                 middleware: [prepare.startPreparation, validAccess.validate]
             }
+        },
+
+        '/game/filter_platform': {
+            GET: {
+                function: controllerService.filter_platform ,
+                middleware: [prepare.startPreparation, validAccess.validate]
+            }
+        },
+        '/game/filter_year': {
+            GET: {
+                function: controllerService.filter_year ,
+                middleware: [prepare.startPreparation, validAccess.validate]
+            }
+        },
+        '/game/filter_category': {
+            GET: {
+                function: controllerService.filter_category ,
+                middleware: [prepare.startPreparation, validAccess.validate]
+            }
         }
     }
 

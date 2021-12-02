@@ -32,7 +32,6 @@ class ServiceModel {
     }
     async bestsellers(platform ,  year){
         let query = `select * from vgsales where "Year" = '${year}' and "Platform" = '${platform}' order by "Global_Sales" desc limit 5`;
-
         return  await  database.query(query)
     }
     async sell_europe_more_than_us(){

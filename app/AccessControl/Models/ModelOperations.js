@@ -2,7 +2,8 @@ const database = require('../DataBase/database')
 
 class ModelOperations {
     async addOperation(method) {
-        return await database.query(`insert into operation (method) values ('${method}') returning method`);
+        let query = `insert into operation (method) values ('${method}') returning method`
+        return await database.query(query);
 
     }
 }

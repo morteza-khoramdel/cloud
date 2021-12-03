@@ -17,7 +17,7 @@ class SendRequestAccessControl {
                 if (req.dataVerify != null) {
                     role = req.dataVerify.role
                 }else {
-                    role = 'visitor'
+                    role = 'VISITOR'
                 }
                 let params = {
                     resource: req.url,

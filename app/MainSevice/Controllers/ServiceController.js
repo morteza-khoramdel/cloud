@@ -104,6 +104,41 @@ class ServiceController {
 
         }
     }
+    get bestsellers(){
+        return async (req, res) => {
+            try {
+                let resIsExist = await model.bestsellers(req.data.platform , req.data.year)
+                if (resIsExist.rowCount) {
+                    res.end(JSON.stringify({message: resIsExist.rows, status: 200}))
+                } else {
+                    res.end(JSON.stringify({error: string.RESPONSE_ERROR_GET_DATA, status: 404}))
+
+                }
+            } catch (e) {
+                res.end(JSON.stringify({error: string.RESPONSE_ERROR_GET_DATA, status: 404}))
+
+            }
+
+        }
+    }
+    get sell_europe_more_than_us(){
+        return async (req, res) => {
+            try {
+                let resIsExist = await model.sell_europe_more_than_us()
+                if (resIsExist.rowCount) {
+                    res.end(JSON.stringify({message: resIsExist.rows, status: 200}))
+                } else {
+                    res.end(JSON.stringify({error: string.RESPONSE_ERROR_GET_DATA, status: 404}))
+
+                }
+            } catch (e) {
+                res.end(JSON.stringify({error: string.RESPONSE_ERROR_GET_DATA, status: 404}))
+
+            }
+
+        }
+    }
+
 }
 
 module.exports = ServiceController

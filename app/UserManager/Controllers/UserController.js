@@ -47,11 +47,6 @@ class UserController {
 
     get signUp() {
         return async (req, res) => {
-            if (req.data.url_img != null) {
-                let img = Base64.toUint8Array(req.data.url_img)
-                await fs.writeFileSync(process.env.SAVE_IMAGES_USER + '\\' + req.data.email + ".jpg", img);
-                req.data.url_img = process.env.SAVE_IMAGES_USER + '\\' + req.data.email + ".jpg"
-            }
             let resData = await model.insertRow(req.data)
 
             if (!resData.rowCount) {
@@ -93,36 +88,7 @@ class UserController {
         }
     }
 
-    get getProfile() {
-        return async (req, res) => {
-            let resChange = await model.getProfile(req.data.name)
-            if (resChange.rowCount) {
-                try {
-                    let buffer = await this._getByteArray(resChange.rows[0].url_img)
-                    let base64Decode = Base64.btoa(buffer)
-                    resChange.rows[0].url_img = base64Decode
-                    res.writeHead(200, {'Access-Control-Allow-Origin': '*'});
-                    res.end(JSON.stringify({message: resChange.rows, status: 200}))
-                } catch (e) {
-                    res.writeHead(200, {'Access-Control-Allow-Origin': '*'});
-                    res.end(JSON.stringify({message: resChange.rows, status: 200}))
-                }
-            } else {
-                res.end(JSON.stringify({error: string.USER_NOT_FOUND, status: 400}))
-            }
 
-        }
-    }
-
-    get _getByteArray() {
-        return async (filePath) => {
-            let fileData = fs.readFileSync(filePath).toString('hex');
-            let result = []
-            for (let i = 0; i < fileData.length; i += 2)
-                result.push('0x' + fileData[i] + '' + fileData[i + 1])
-            return result;
-        }
-    }
 }
 
 module.exports = UserController

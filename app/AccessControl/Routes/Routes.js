@@ -44,7 +44,7 @@ module.exports =
         '/access/assign_access': {
             POST: {
                 function: controllerAccessControl.assignAccess,
-                middleware: [prepare.startPreparation, validAccess.validate , sendRequestAccessControl.send]
+                middleware: [prepare.startPreparation, validAccess.validate ]
             }
         }
     }

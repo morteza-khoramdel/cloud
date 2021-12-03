@@ -9,7 +9,7 @@ class SendRequestAccessControl {
 
     get send() {
         return async (req, res, next) => {
-            if (req.headers.host !== string.BASE_URL + ':' + string.PORT) {
+            if (req.headers.host !== process.env.BASE_URL_BACKEND) {
                 if (req.headers.cookie != null) {
                         await verifyJWT.verify(req, res)
                 }
@@ -26,7 +26,7 @@ class SendRequestAccessControl {
                 }
                 params = JSON.stringify(params)
                 try {
-                    await axios.post(process.env.BASE_URL + '/access/check_access', params);
+                    await axios.post(process.env.BASE_URL_BACKEND + '/access/check_access', params);
                     next();
                 } catch (e) {
                     res.statusCode = 401

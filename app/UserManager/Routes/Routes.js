@@ -37,12 +37,6 @@ module.exports =
             },
 
         },
-        '/user/getprofile': {
-            GET: {
-                function: controller.getProfile,
-                middleware: [prepare.startPreparation, accessControl.send ]
-            },
 
-        },
     }
 

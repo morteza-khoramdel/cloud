@@ -4,6 +4,9 @@ const string = require('../../../assets/strings')
 
 class ControllerAccessControl {
     async checkAccess(req, res) {
+        if (req.data.role===undefined){
+            req.data.role ='VISITOR'
+        }
         let resData = await model.checkAccess(req.data.resource, req.data.role, req.data.operation)
         if (resData.rowCount) {
             res.statusCode = 200

@@ -20,7 +20,7 @@ module.exports =
         '/access/check_access': {
             POST: {
                 function: controllerAccessControl.checkAccess,
-                middleware: [prepare.startPreparation, validAccess.validate]
+                middleware: [prepare.startPreparation, validAccess.validate ]
             }
         },
         '/access/role': {
@@ -44,7 +44,7 @@ module.exports =
         '/access/assign_access': {
             POST: {
                 function: controllerAccessControl.assignAccess,
-                middleware: [prepare.startPreparation, validAccess.validate ]
+                middleware: [prepare.startPreparation, validAccess.validate ,sendRequestAccessControl.send]
             }
         }
     }

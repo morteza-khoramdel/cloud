@@ -65,8 +65,6 @@ const TOKEN = 'token'
 const GET = 'GET'
 const DATA = 'data'
 const END = 'end'
-const BASE_URL = "127.0.0.1"
-const PORT = '8585'
 module.exports = {
     IDENTIFICATION_KEY,
     RESPONSE_ERROR_SIGN_UP,
@@ -102,8 +100,6 @@ module.exports = {
     GET,
     DATA,
     END,
-    BASE_URL,
-    PORT,
     USER_FOUND,
     TOKEN_NOT_FOUND,
     UN_AUTHORIZE,

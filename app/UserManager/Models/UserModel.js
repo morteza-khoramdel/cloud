@@ -26,7 +26,7 @@ class UserModel {
              values ((select id from new_order) ,(select id from roles where name  ='${person.role}')) returning id_user ;`);
     }
 
-    async changePassword(req, res) {
+    async changePassword(req) {
         let error = {rowCount: 0};
         let resExist = await database.query(`select email from "user" where email='${req.dataVerify['email']}';`)
         if (resExist.rowCount) {

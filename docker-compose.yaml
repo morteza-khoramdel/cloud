@@ -1,0 +1,85 @@
+version: "3.3"
+services:
+  main-service-database:
+    image: 'postgres'
+    container_name: main-service-database
+    ports:
+     - '5432:5432'
+    networks:
+      - main-service-network
+    volumes:
+      - ./main-service/main-service-database/data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /var/lib/postgresql/data/pgdata
+
+  analytics:
+    build: ./analytical_service
+    image: analytics-service-backend
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./config:/config
+    depends_on:
+      - main-service-database
+    environment:
+      - HOST_SERVER=185.235.42.111
+      - DB_ENGINE=django.db.backends.postgresql
+      - NAME_DATABASE=postgres
+      - USER_DATABASE=postgres
+      - PASSWORD_DATABASE=postgres
+      - HOST_DATABASE_GAME=main-service-database
+      - PORT_DATABASE_GAME=5432
+      - BASE_URL_AUTHENTICATION_AND_AUTHORIZATION=http://185.235.42.111:8000 # do it with http
+      - DEBUG=1
+    networks:
+      - main-service-network
+    container_name: analytics-service-backend
+
+  main-service-backend:
+    build: ./main-service
+    image: main-service-backend
+    ports:
+      - '8001:8001'
+    volumes:
+      - ./config:/config
+    depends_on:
+      - main-service-database
+    networks:
+      - main-service-network
+    container_name: main-service-backend
+  
+  authentication-and-authorization-database:
+    image: 'postgres'
+    container_name: authentication-and-authorization-database
+    ports:
+     - '5431:5432'
+    networks:
+     - authentication-and-authorization-network
+    volumes:
+     - ./authentication-and-authorization/authentication-and-authorization-database/data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /var/lib/postgresql/data/pgdata
+
+  authentication-and-authorization-backend:
+    build: ./authentication-and-authorization
+    image: authentication-and-authorization-backend
+    ports:
+      - '8000:8000'
+    volumes:
+      - ./config:/config
+    depends_on:
+      - authentication-and-authorization-database
+    networks:
+     - authentication-and-authorization-network
+    container_name: authentication-and-authorization-backend
+  
+
+networks:
+  main-service-network:
+    external: true
+  authentication-and-authorization-network:
+    external: true
+volumes:
+  data:

@@ -1,0 +1,19 @@
+{
+  "name": "main-service",
+  "version": "1.0.0",
+  "dependencies": {
+    "ajv": "^8.6.0",
+    "busboy": "^0.3.1",
+    "js-base64": "^3.6.1",
+    "pg": "^8.7.1"
+  },
+  "devDependencies": {
+    "axios": "^0.21.1",
+    "dotenv": "^10.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "my-router-part-morteza": "^1.2.4",
+    "my-server-part-morteza": "^1.3.2",
+    "nodemailer": "^6.6.1",
+    "query-string": "^7.0.0"
+  }
+}

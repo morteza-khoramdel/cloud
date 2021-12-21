@@ -20,7 +20,7 @@ RUN pip install --no-cache-dir -U pip wheel setuptools
 # Install any needed packages specified in requirements.txt
 RUN pip install -r requirements.txt
 
-VOLUME /analytical_service
+# VOLUME /analytical_service
 
 EXPOSE 8080
 

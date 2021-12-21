@@ -13,28 +13,7 @@ services:
       POSTGRES_PASSWORD: postgres
       PGDATA: /var/lib/postgresql/data/pgdata
 
-  analytics:
-    build: ./analytical_service
-    image: analytics-service-backend
-    ports:
-      - '8080:8080'
-    volumes:
-      - ./config:/config
-    depends_on:
-      - main-service-database
-    environment:
-      - HOST_SERVER=185.235.42.111
-      - DB_ENGINE=django.db.backends.postgresql
-      - NAME_DATABASE=postgres
-      - USER_DATABASE=postgres
-      - PASSWORD_DATABASE=postgres
-      - HOST_DATABASE_GAME=main-service-database
-      - PORT_DATABASE_GAME=5432
-      - BASE_URL_AUTHENTICATION_AND_AUTHORIZATION=http://185.235.42.111:8000 # do it with http
-      - DEBUG=1
-    networks:
-      - main-service-network
-    container_name: analytics-service-backend
+
 
   main-service-backend:
     build: ./main-service
